@@ -1,0 +1,68 @@
+import React, { useState } from 'react';
+
+const Storiz = () => {
+    const [media, setMedia] = useState([]); // Список медиа-файлов (изображения, видео)
+    const [filters, setFilters] = useState([]); // Список выбранных фильтров
+    const [stickers, setStickers] = useState([]); // Список выбранных стикеров
+    const [text, setText] = useState(''); // Текст для добавления на изображение
+
+    // Обработчик загрузки медиа-файлов
+    const handleMediaUpload = (event) => {
+        const files = event.target.files;
+        const mediaFiles = [...media];
+
+        for (let i = 0; i < files.length; i++) {
+            mediaFiles.push(files[i]);
+        }
+
+        setMedia(mediaFiles);
+    };
+
+    // Обработчик добавления фильтров
+    const handleAddFilter = (filter) => {
+        const updatedFilters = [...filters, filter];
+        setFilters(updatedFilters);
+    };
+
+    // Обработчик добавления стикера
+    const handleAddSticker = (sticker) => {
+        const updatedStickers = [...stickers, sticker];
+        setStickers(updatedStickers);
+    };
+
+    // Обработчик изменения текста
+    const handleTextChange = (event) => {
+        setText(event.target.value);
+    };
+
+    // Обработчик сохранения сториз
+    const saveStoriz = () => {
+        // Логика сохранения сториз
+        console.log('Сохранение сториз:', media, filters, stickers, text);
+    };
+
+    return (
+        <div>
+            <h2>Storiz</h2>
+            {/* Форма для загрузки медиа-файлов */}
+            <input type="file" multiple onChange={handleMediaUpload} />
+
+            {/* Контролы для добавления фильтров, стикеров и текста */}
+            <div>
+                <input type="text" placeholder="Добавить текст" value={text} onChange={handleTextChange} />
+                <button onClick={saveStoriz}>Сохранить сториз</button>
+            </div>
+
+            {/* Отображение выбранных медиа-файлов */}
+            <div>
+                {media.map((file, index) => (
+                    <div key={index}>
+                        <img src={URL.createObjectURL(file)} alt={`Media ${index}`} width="200" height="150" />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Storiz;
