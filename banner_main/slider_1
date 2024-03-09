@@ -1,0 +1,41 @@
+import React from 'react';
+import Slider from './Slider'; // Путь к компоненту Slider
+
+const MainPage = () => {
+    // Пример данных баннеров
+    const banners = [
+        {
+            image: 'url/to/first/banner.jpg',
+            title: 'Специальное предложение',
+            description: 'Скидка 20% на все товары до конца недели!',
+            button: {
+                text: 'Узнать больше',
+                link: '/special-offers',
+            },
+        },
+        {
+            image: 'url/to/second/banner.jpg',
+            title: 'Новинка в нашем магазине',
+            description: 'Узнайте первыми о новой коллекции весна-лето!',
+        },
+        {
+            image: 'url/to/third/banner.jpg',
+            title: 'Бесплатная доставка',
+            description: 'При заказе от 1000 рублей!',
+            button: {
+                text: 'Перейти к покупкам',
+                link: '/shop',
+            },
+        },
+    ];
+
+    return (
+        <div>
+            <h1>Главная страница</h1>
+            <Slider banners={banners} />
+            {/* Другие компоненты и контент главной страницы */}
+        </div>
+    );
+};
+
+export default MainPage;
